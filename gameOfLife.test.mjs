@@ -33,6 +33,9 @@ describe("Extract Living cells", () => {
     it("Determine where the living cells are", () => {
         expect(getLivingCellsFromRLE("2o$2o!")).toEqual([[0,0], [1,0], [0,1], [1,1]])
     })
+    it("Determine where the living cells are", () => {
+        expect(getLivingCellsFromRLE("bobo$2bob$3ob!")).toEqual([[1,0], [3,0], [2,1], [0,2], [1,2], [2,2]])
+    })
 })
 
 describe("Place cells on field", () => {
