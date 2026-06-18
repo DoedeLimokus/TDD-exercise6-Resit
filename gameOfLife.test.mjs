@@ -1,5 +1,5 @@
 import { describe, it, expect} from "vitest"
-import { createField } from "./gameOfLife.mjs"
+import { createField, getSizeFromRLE, getLivingCellsFromRLE } from "./gameOfLife.mjs"
 
 // empty field check
 describe('empty field check', () => {
@@ -7,3 +7,10 @@ describe('empty field check', () => {
         expect(createField(3,3)).toEqual([['b','b','b'],['b','b','b'],['b','b','b']])
     })
 })
+
+describe("Extract the field size", () => {
+    it("Check if the right x and y are extracted from the RLE format", () => {
+        expect(getSizeFromRLE("x = 3, y = 3")).toEqual([['x',3],['y',3]])
+    })
+})
+
