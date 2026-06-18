@@ -28,7 +28,10 @@ describe("Extract the field size", () => {
 
 describe("Extract Living cells", () => {
     it("Determine where the living cells are", () => {
-        expect(getLivingCellsFromRLE("bob$2bo@3o!")).toEqual([[1,0], [2,1], [0,2], [1,2], [2,2]])
+        expect(getLivingCellsFromRLE("bob$2bo$3o!")).toEqual([[1,0], [2,1], [0,2], [1,2], [2,2]])
+    })
+    it("Determine where the living cells are", () => {
+        expect(getLivingCellsFromRLE("2o$2o!")).toEqual([[0,0], [1,0], [0,1], [1,1]])
     })
 })
 

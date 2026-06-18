@@ -21,11 +21,41 @@ export function getSizeFromRLE(RLE){
 }
 
 export function getLivingCellsFromRLE(RLE){
-    return ([[1,0], [2,1], [0,2], [1,2], [2,2]])
+    let livingCells = []
+    let pointer = 0
+    let x = 0
+    let y = 0
+    const sizeOfRLE = RLE.length
+
+    for (pointer = 0; pointer < sizeOfRLE; pointer++){
+        let currentLetter = RLE[pointer]
+        if (currentLetter == '!'){
+            return livingCells
+        }
+
+        if (currentLetter == 'b'){
+            x += 1
+        } else if (currentLetter == 'o'){
+            livingCells.push([x,y])
+            x += 1
+        } else if (currentLetter == "$"){
+            console.log(`$, ${pointer}`)
+            x = 0
+            y += 1
+        } else if (!isNaN(RLE[pointer])){
+            if (RLE[pointer + 1] == "o"){
+                for (let i = 0; i < Number(RLE[pointer]); i++){
+                    livingCells.push([(x+i),y])
+                }
+                x = x + Number(RLE[pointer])
+                pointer += 1
+            } else {
+                x += 1
+            }
+        }
+    }
 }
 
 export function placeCellsOnField(field, livingCells){
     return ([['b','o','b'],['b','b','o'],['o','o','o']])
 }
-
-console.log(getSizeFromRLE('x = 3, y = 4'))
