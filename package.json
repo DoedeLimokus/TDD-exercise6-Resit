@@ -1,0 +1,24 @@
+{
+  "name": "tdd-exercise6-resit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DoedeLimokus/TDD-exercise6-Resit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/DoedeLimokus/TDD-exercise6-Resit/issues"
+  },
+  "homepage": "https://github.com/DoedeLimokus/TDD-exercise6-Resit#readme",
+  "dependencies": {
+    "vitest": "^4.1.9"
+  }
+}
