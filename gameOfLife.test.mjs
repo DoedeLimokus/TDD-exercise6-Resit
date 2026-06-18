@@ -9,6 +9,9 @@ describe('empty field check', () => {
     it("Check if a field is empty when created (4x3)", () => {
         expect(createField(4,3)).toEqual([['b','b','b'],['b','b','b'],['b','b','b'],['b','b','b']])
     })
+    it("Check if a field is empty when created (4x4)", () => {
+        expect(createField(4,4)).toEqual([['b','b','b','b'],['b','b','b','b'],['b','b','b','b'],['b','b','b','b']])
+    })
 })
 
 describe("Extract the field size", () => {
