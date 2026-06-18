@@ -16,7 +16,8 @@ export function createField(x,y){
 }
 
 export function getSizeFromRLE(RLE){
-    return ([['x',3], ['y',3]])
+    const sizes = RLE.match(/\d+/g)
+    return([['x', Number(sizes[0])], ['y', Number(sizes[1])]])
 }
 
 export function getLivingCellsFromRLE(RLE){
@@ -27,4 +28,4 @@ export function placeCellsOnField(field, livingCells){
     return ([['b','o','b'],['b','b','o'],['o','o','o']])
 }
 
-console.log(createField(3,3))
+console.log(getSizeFromRLE('x = 3, y = 4'))
