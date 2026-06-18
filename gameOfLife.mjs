@@ -9,3 +9,7 @@ export function getSizeFromRLE(RLE){
 export function getLivingCellsFromRLE(RLE){
     return ([[1,0], [2,1], [0,2], [1,2], [2,2]])
 }
+
+export function placeCellsOnField(field, livingCells){
+    return ([['b','o','b'],['b','b','o'],['o','o','o']])
+}

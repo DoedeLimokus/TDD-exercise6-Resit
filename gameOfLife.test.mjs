@@ -1,5 +1,5 @@
 import { describe, it, expect} from "vitest"
-import { createField, getSizeFromRLE, getLivingCellsFromRLE } from "./gameOfLife.mjs"
+import { createField, getSizeFromRLE, getLivingCellsFromRLE, placeCellsOnField} from "./gameOfLife.mjs"
 
 // empty field check
 describe('empty field check', () => {
@@ -17,5 +17,11 @@ describe("Extract the field size", () => {
 describe("Extract Living cells", () => {
     it("Determine where the living cells are", () => {
         expect(getLivingCellsFromRLE("bob$2bo@3o!")).toEqual([[1,0], [2,1], [0,2], [1,2], [2,2]])
+    })
+})
+
+describe("Place cells on field", () => {
+    it("place the living cells on the field", () => {
+        expect(placeCellsOnField([['b','b','b'],['b','b','b'],['b','b','b']], [[1,0], [2,1], [0,2], [1,2], [2,2]])).toEqual([['b','o','b'],['b','b','o'],['o','o','o']])
     })
 })
