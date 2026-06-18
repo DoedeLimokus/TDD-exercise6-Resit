@@ -1,5 +1,18 @@
 export function createField(x,y){
-    return ([['b','b','b'],['b','b','b'],['b','b','b']])
+    let currentField = []
+    let newField = []
+
+
+    let i = 0
+    let j = 0
+    for (i = 0; i < x; i++){
+        newField = []
+        for (j = 0; j < y; j++){
+            newField.push('b')
+        }
+        currentField.push(newField)
+    }
+    return currentField
 }
 
 export function getSizeFromRLE(RLE){
@@ -13,3 +26,5 @@ export function getLivingCellsFromRLE(RLE){
 export function placeCellsOnField(field, livingCells){
     return ([['b','o','b'],['b','b','o'],['o','o','o']])
 }
+
+console.log(createField(3,3))

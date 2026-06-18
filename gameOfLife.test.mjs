@@ -3,8 +3,11 @@ import { createField, getSizeFromRLE, getLivingCellsFromRLE, placeCellsOnField} 
 
 // empty field check
 describe('empty field check', () => {
-    it("Check if a field is empty when created", () => {
+    it("Check if a field is empty when created (3x3)", () => {
         expect(createField(3,3)).toEqual([['b','b','b'],['b','b','b'],['b','b','b']])
+    })
+    it("Check if a field is empty when created (4x3)", () => {
+        expect(createField(4,3)).toEqual([['b','b','b'],['b','b','b'],['b','b','b'],['b','b','b']])
     })
 })
 
