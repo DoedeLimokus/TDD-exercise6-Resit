@@ -21,6 +21,9 @@ describe("Extract the field size", () => {
     it("Check if the right x and y are extracted from the RLE format", () => {
         expect(getSizeFromRLE("x = 4, y = 4")).toEqual([['x',4],['y',4]])
     })
+    it("Check if the right x and y are extracted from the RLE format", () => {
+        expect(getSizeFromRLE("x = 3, y = 4")).toEqual([['x',3],['y',4]])
+    })
 })
 
 describe("Extract Living cells", () => {
