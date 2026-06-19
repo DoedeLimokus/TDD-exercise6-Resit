@@ -1,3 +1,4 @@
+// --------------------------------BEFORE GAME----------------------------------- 
 export function createField(x,y){
     let currentField = []
     let newField = []
@@ -64,6 +65,8 @@ export function placeCellsOnField(field, livingCells){
     }
     return field
 }
+
+// --------------------------------DURING GAME----------------------------------- 
 
 export function checkEachCell(field){
     let result = []
