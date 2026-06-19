@@ -39,7 +39,10 @@ describe("Extract Living cells", () => {
 })
 
 describe("Place cells on field", () => {
-    it("place the living cells on the field", () => {
+    it("place the living cells on the field - 5", () => {
         expect(placeCellsOnField([['b','b','b'],['b','b','b'],['b','b','b']], [[1,0], [2,1], [0,2], [1,2], [2,2]])).toEqual([['b','o','b'],['b','b','o'],['o','o','o']])
+    })
+    it("place the living cells on the field - 7", () => {
+        expect(placeCellsOnField([['b','b','b'],['b','b','b'],['b','b','b']], [[0,0], [1,1], [2,2], [0,2], [1,0], [0,1], [1,2]])).toEqual([['o','o','b'],['o','o','b'],['o','o','o']])
     })
 })

@@ -57,5 +57,10 @@ export function getLivingCellsFromRLE(RLE){
 }
 
 export function placeCellsOnField(field, livingCells){
-    return ([['b','o','b'],['b','b','o'],['o','o','o']])
+    const livingCellsLength = livingCells.length
+    for (let cell = 0; cell < livingCellsLength; cell++){
+        let currentCell = livingCells[cell]
+        field[currentCell[1]][currentCell[0]] = 'o'
+    }
+    return field
 }
