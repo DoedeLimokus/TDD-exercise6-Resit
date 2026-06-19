@@ -65,6 +65,35 @@ export function placeCellsOnField(field, livingCells){
     return field
 }
 
-export function checkEachCell(){
-    return ([[0,0,1,0], [1,0,1,1], [2,0,2,0], [0,1,3,0], [1,1,5,0], [2,1,3,1], [0,2,1,1], [1,2,3,1], [2,2,2,1]])
+export function checkEachCell(field){
+    let result = []
+    const yLength = field.length
+    const xLength = field[0].length
+    for(let y = 0; y < yLength; y++){
+        for (let x = 0; x < xLength; x++){
+            let cell = field[y][x]
+            let living = 0
+            if (cell == 'o'){
+                living = 1
+            }
+            let neighbours = 0
+            for(let yTranslate = -1; yTranslate < 2; yTranslate++){
+                let yCheck = y + yTranslate
+                if (!(yCheck < 0 || yCheck >= yLength)){
+                    for(let xTranslate = -1; xTranslate < 2; xTranslate++){
+                        let xCheck = x + xTranslate
+                        if (!(xCheck < 0 || xCheck >= xLength)){
+                            if(!(xCheck == x && yCheck == y)){
+                                if(field[yCheck][xCheck] == 'o'){
+                                    neighbours++
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            result.push([x,y,neighbours,living])
+        }
+    }
+    return result
 }
