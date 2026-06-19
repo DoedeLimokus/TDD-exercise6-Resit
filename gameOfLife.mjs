@@ -64,3 +64,7 @@ export function placeCellsOnField(field, livingCells){
     }
     return field
 }
+
+export function checkEachCell(){
+    return ([[0,0,1,0], [1,0,1,1], [2,0,2,0], [0,1,3,0], [1,1,5,0], [2,1,3,1], [0,2,1,1], [1,2,3,1], [2,2,2,1]])
+}
