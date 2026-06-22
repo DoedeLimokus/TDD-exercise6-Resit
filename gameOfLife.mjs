@@ -164,27 +164,26 @@ export function formRLE(field){
 export function playGame(RLE, turns){
 
     const parsedRLE = formatRLE(RLE)
-    const size = getSizeFromRLE(parsedRLE[0])
-    const livingCellsRLE = getLivingCellsFromRLE(parsedRLE[1])
-    let field = createField(size[0][1], size[1][1])
-    // console.log(livingCellsRLE)
-    // console.log(field)
-    // console.log('We gaan een veld maken')
-    let state = placeCellsOnField(field, livingCellsRLE)
+    let state = getLivingCellsFromRLE(parsedRLE[1])
 
     for(let turn = 0; turn < turns; turn++){
-        let cellData = checkEachCell(state)
-        let livingCells = giveLivingCells(cellData)
-        let newField = createField(size[0][1], size[1][1])
+        state = getNewLivingCells(state)
         console.log(`dit is turn ${turn}`)
-        state = placeCellsOnField(newField, livingCells)
     }
 
-    console.log(formRLE(state))
-    return(formRLE(state))
+    console.log(`final state is`)
+    console.log(state)
+    const normalizedCells = normalizeCells(state)
+    console.log(normalizedCells)
+    const MinMax = getDifMinMax(normalizedCells)
+    console.log(MinMax)
+    const emptyField = createField(MinMax[1],MinMax[0])
+    console.log(emptyField)
+    const endField = placeCellsOnField(emptyField, normalizedCells)
+
+    return(formRLE(endField))
+
 }
-
-
 export function getNewLivingCells(livingCells){
     let neighbourCount = []
     let NewLivingCells = []
@@ -225,7 +224,7 @@ export function getDifMinMax(livingCells){
     const minY = Math.min (...ys)
     const maxY = Math.max (...ys)
 
-    return([(maxX - minX), (maxY - minY)])
+    return([((maxX - minX)+1),((maxY - minY)+1)])
 }
 
 export function normalizeCells(cells){
@@ -235,6 +234,6 @@ export function normalizeCells(cells){
     return answer
 }
 
-console.log(playGame(`#C This is a glider.
+console.log(playGame(`#C Dit is een zelfverzonnen test
 x = 3, y = 3
-bob$2bo$3o!`, 3))
+3b$3o$3b!`, 1))

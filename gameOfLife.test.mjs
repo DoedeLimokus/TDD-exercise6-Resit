@@ -102,27 +102,27 @@ describe("Play Game -> Play the full game", () => {
     it("Play a simple game of life 1", () => {
         expect(playGame(`#C This is a glider.
 x = 3, y = 3
-bob$2bo$3o!`, 3)).toBe('3b$b2o$b2o!')
+bob$2bo$3o!`, 3)).toBe('o2b$b2o$2ob!')
     })
     it("Play a simple game of life 2", () => {
         expect(playGame(`#C This is a glider.
 x = 3, y = 3
-bob$2bo$3o!`, 1)).toBe('3b$obo$b2o!')
+bob$2bo$3o!`, 1)).toBe('obo$b2o$bob!')
     })
     it("Plat a simple game of life 3", () => {
         expect(playGame(`#C Dit is een zelfverzonnen test
 x = 3, y = 3
-3b$3o$3b!`, 1)).toBe('bob$bob$bob!')
+3o!`, 1)).toBe('o$o$o!')
     })
     it("Plat a simple game of life 4", () => {
         expect(playGame(`#C Dit is een zelfverzonnen test
 x = 4, y = 4
-b2ob$obob$bo2b$2obo!`, 1)).toBe('b2ob$obob$4b$3ob!')
+b2ob$obob$bo2b$2obo!`, 1)).toBe('b2o$obo$3b$3o!')
     })
     it("Plat a simple game of life 5", () => {
         expect(playGame(`#C Dit is een zelfverzonnen test
 x = 4, y = 4
-b2ob$obob$bo2b$2obo!`, 3)).toBe('b2ob$2b2o$2bob$bo2b!')
+b2ob$obob$bo2b$2obo!`, 3)).toBe('b2ob$2b2o$2bob$3ob!')
     })
 })
 
@@ -137,10 +137,10 @@ describe("the new checkCells - unlimited boarder frendly", () => {
 
 describe("Get the min max difference for determining the field size", () => {
     it("max and min test 1", () => {
-        expect(getDifMinMax([[3,1], [2,1], [-2,1], [1,2], [2,5]])).toEqual([5,4])
+        expect(getDifMinMax([[3,1], [2,1], [-2,1], [1,2], [2,5]])).toEqual([6,5])
     })
     it("max and min test 2", () => {
-        expect(getDifMinMax([[3,1], [2,1], [-2,1], [1,2], [2,7]])).toEqual([5,6])
+        expect(getDifMinMax([[3,1], [2,1], [-2,1], [1,2], [2,7]])).toEqual([6,7])
     })
 })
 
