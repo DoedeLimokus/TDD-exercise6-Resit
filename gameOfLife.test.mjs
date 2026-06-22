@@ -1,5 +1,5 @@
 import { describe, it, expect} from "vitest"
-import { createField, getSizeFromRLE, getLivingCellsFromRLE, placeCellsOnField, checkEachCell, giveLivingCells, formatRLE, formRLE, playGame} from "./gameOfLife.mjs"
+import { createField, getSizeFromRLE, getLivingCellsFromRLE, placeCellsOnField, checkEachCell, giveLivingCells, formatRLE, formRLE, playGame, getNewLivingCells, getDifMinMax} from "./gameOfLife.mjs"
 
 // empty field check
 describe('empty field check', () => {
@@ -125,3 +125,13 @@ x = 4, y = 4
 b2ob$obob$bo2b$2obo!`, 3)).toBe('b2ob$2b2o$2bob$bo2b!')
     })
 })
+
+describe("the new checkCells - unlimited boarder frendly", () => {
+    it("simple first test", () => {
+        expect(getNewLivingCells([[1,0], [2,1], [0,2], [1,2], [2,2]])).toEqual([[0,1], [2,1], [1,2], [2,2], [1,3]])
+    })
+    it("simple first test", () => {
+        expect(getNewLivingCells([[1,0], [2,1], [0,1], [1,2], [2,2]])).toEqual(expect.arrayContaining([[1,0], [2,1], [0,1], [1,2], [2,2]]))
+    })
+})
+

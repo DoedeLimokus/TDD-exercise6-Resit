@@ -179,10 +179,38 @@ export function playGame(RLE, turns){
         state = placeCellsOnField(newField, livingCells)
     }
 
-    console.log(formRLE(state))
     return(formRLE(state))
 }
 
-playGame(`#C This is a glider.
-x = 3, y = 3
-bob$2bo$3o!`, 3)
+export function getNewLivingCells(livingCells){
+    let neighbourCount = []
+    let NewLivingCells = []
+    for(let cell = 0; cell < livingCells.length; cell++){
+        const currentCell = livingCells[cell]
+        for(let dy = -1; dy < 2; dy++){
+            for(let dx = -1; dx < 2; dx++){
+                if (dx == 0 && dy == 0) continue
+                neighbourCount.push([currentCell[0] + dx, currentCell[1] + dy])
+            }
+        }
+    }
+
+    for(let i = 0; i < neighbourCount.length; i++){
+        let count = neighbourCount.filter(item => JSON.stringify(item) == JSON.stringify(neighbourCount[i])).length
+        let living = livingCells.some(item => JSON.stringify(item) == JSON.stringify(neighbourCount[i]))
+        if(count == 2 && living){
+            NewLivingCells.push(neighbourCount[i])
+        } else if (count == 3){
+            NewLivingCells.push(neighbourCount[i])
+        }
+        
+    }
+
+    
+    const uniqueCellsString = [...new Set(NewLivingCells.map(item => JSON.stringify(item)))]
+    
+    const uniqueCellsArray = uniqueCellsString.map(item => JSON.parse(item))
+
+    return(uniqueCellsArray)
+}
+
