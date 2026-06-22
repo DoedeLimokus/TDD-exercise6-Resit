@@ -214,3 +214,15 @@ export function getNewLivingCells(livingCells){
     return(uniqueCellsArray)
 }
 
+export function getDifMinMax(livingCells){
+    const xs = livingCells.map(cell => cell[0])
+    const ys = livingCells.map(cell => cell[1])
+    const minX = Math.min (...xs)
+    const maxX = Math.max (...xs)
+    const minY = Math.min (...ys)
+    const maxY = Math.max (...ys)
+
+    return([(maxX - minX), (maxY - minY)])
+}
+
+console.log(getDifMinMax([[3,1], [2,1], [-2,1], [1,2], [2,5]]))

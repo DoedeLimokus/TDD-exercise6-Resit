@@ -135,3 +135,11 @@ describe("the new checkCells - unlimited boarder frendly", () => {
     })
 })
 
+describe("Get the min max difference for determining the field size", () => {
+    it("max and min test 1", () => {
+        expect(getDifMinMax([[3,1], [2,1], [-2,1], [1,2], [2,5]])).toEqual([5,4])
+    })
+    it("max and min test 2", () => {
+        expect(getDifMinMax([[3,1], [2,1], [-2,1], [1,2], [2,7]])).toEqual([5,6])
+    })
+})
