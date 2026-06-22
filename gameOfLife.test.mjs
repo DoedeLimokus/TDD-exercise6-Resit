@@ -93,4 +93,7 @@ describe("Form a RLE return for the end of the game", () => {
     it("Get the RLE from a field 1", () => {
         expect(formRLE([['b','o','b'],['b','b','o'],['o','o','o']])).toBe('bob$2bo$3o!')
     })
+    it("Get the RLE from a field 2", () => {
+        expect(formRLE([['b','o','o','b'],['b','b','o','o'],['b','o','b','o']])).toBe('b2ob$2b2o$bobo!')
+    })
 })

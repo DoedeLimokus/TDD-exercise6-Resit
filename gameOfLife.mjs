@@ -139,5 +139,28 @@ export function formatRLE(RLE){
 }
 
 export function formRLE(field){
-    return('bob$2bo$3o!')
+    let returnArray = []
+    for(let pointer = 0; pointer < field.length; pointer++){
+        const currentRow = field[pointer]
+        for(let i = 0; i < currentRow.length; i++){
+            let amount = 0
+            let currentLetter = currentRow[i]
+            while (currentRow[i + amount] == currentLetter){
+                amount += 1
+            }
+            if(amount > 1){
+                returnArray.push(amount)
+                returnArray.push(currentLetter)
+                i = i + (amount - 1)
+            } else if (amount == 1){
+                returnArray.push(currentLetter)
+            }
+        }
+        returnArray.push('$')
+    }
+    returnArray[returnArray.length - 1] = '!'
+    const returnRLE = returnArray.join('')
+    return(returnRLE)
 }
+
+formRLE([['b','o','b'],['b','b','o'],['o','o','o']])
