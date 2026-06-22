@@ -168,17 +168,11 @@ export function playGame(RLE, turns){
 
     for(let turn = 0; turn < turns; turn++){
         state = getNewLivingCells(state)
-        console.log(`dit is turn ${turn}`)
     }
 
-    console.log(`final state is`)
-    console.log(state)
     const normalizedCells = normalizeCells(state)
-    console.log(normalizedCells)
     const MinMax = getDifMinMax(normalizedCells)
-    console.log(MinMax)
     const emptyField = createField(MinMax[1],MinMax[0])
-    console.log(emptyField)
     const endField = placeCellsOnField(emptyField, normalizedCells)
 
     return(formRLE(endField))
@@ -233,7 +227,3 @@ export function normalizeCells(cells){
     const answer = cells.map(([x,y]) => [x-minX, y-minY])
     return answer
 }
-
-console.log(playGame(`#C Dit is een zelfverzonnen test
-x = 3, y = 3
-3b$3o$3b!`, 1))
