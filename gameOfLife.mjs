@@ -1,3 +1,14 @@
+import {readFile, readFileSync} from "node:fs"
+import { run } from "node:test"
+
+// --------------------------------READ STDIN----------------------------------- 
+function runClient(){
+    const file = process.argv[2]
+    const rotations = Number(process.argv[3])
+    const RLE = readFileSync(file, "utf-8")
+    console.log(playGame(RLE, rotations))
+}
+
 // --------------------------------BEFORE GAME----------------------------------- 
 export function createField(x,y){
     let currentField = []
@@ -164,7 +175,8 @@ export function formRLE(field){
 export function playGame(RLE, turns){
 
     const parsedRLE = formatRLE(RLE)
-    let state = getLivingCellsFromRLE(parsedRLE[1])
+    console.log(parsedRLE)
+    let state = getLivingCellsFromRLE(parsedRLE[0])
 
     for(let turn = 0; turn < turns; turn++){
         state = getNewLivingCells(state)
@@ -227,3 +239,5 @@ export function normalizeCells(cells){
     const answer = cells.map(([x,y]) => [x-minX, y-minY])
     return answer
 }
+
+runClient()
