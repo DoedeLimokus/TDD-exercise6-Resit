@@ -1,5 +1,5 @@
 import { describe, it, expect} from "vitest"
-import { createField, getSizeFromRLE, getLivingCellsFromRLE, placeCellsOnField, checkEachCell, giveLivingCells, formatRLE} from "./gameOfLife.mjs"
+import { createField, getSizeFromRLE, getLivingCellsFromRLE, placeCellsOnField, checkEachCell, giveLivingCells, formatRLE, formRLE} from "./gameOfLife.mjs"
 
 // empty field check
 describe('empty field check', () => {
@@ -87,4 +87,10 @@ bo$2bo$3o!`)).toEqual(['x = 3, y = 3', 'bo$2bo$3o!'])
 x = 36, y = 9, rule = B3/S23
 24bo$22bobo$12b2o6b2o12b2o$11bo3bo4b2o12b2o$2o8bo5bo3b2o$2o8bo3bob2o4bobo$10bo5bo7bo$11bo3bo$12b2o!`)).toEqual(['x = 36, y = 9', '24bo$22bobo$12b2o6b2o12b2o$11bo3bo4b2o12b2o$2o8bo5bo3b2o$2o8bo3bob2o4bobo$10bo5bo7bo$11bo3bo$12b2o!'])
                     })
+})
+
+describe("Form a RLE return for the end of the game", () => {
+    it("Get the RLE from a field 1", () => {
+        expect(formRLE([['b','o','b'],['b','b','o'],['o','o','o']])).toBe('bob$2bo$3o!')
+    })
 })

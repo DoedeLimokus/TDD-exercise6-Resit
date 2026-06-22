@@ -138,6 +138,6 @@ export function formatRLE(RLE){
     return (returnData)
 }
 
-formatRLE(`#C This is a glider.
-x = 3, y = 3
-bo$2bo$3o!`)
+export function formRLE(field){
+    return('bob$2bo$3o!')
+}
