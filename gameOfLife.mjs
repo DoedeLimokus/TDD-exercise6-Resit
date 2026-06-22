@@ -100,3 +100,21 @@ export function checkEachCell(field){
     }
     return result
 }
+
+export function giveLivingCells(data){
+    let livingCellsNextRound = []
+    for(let pointer = 0; pointer < (data.length); pointer++){
+        const cell = data[pointer]
+        // living cell
+        if (cell[3] == 1){
+            if (cell[2] == 2 || cell[2] == 3){
+                livingCellsNextRound.push([cell[0],cell[1]])
+            }
+        } else {
+            if (cell[2] == 3){
+                livingCellsNextRound.push([cell[0], cell[1]])
+            }
+        }
+    }
+    return livingCellsNextRound
+}

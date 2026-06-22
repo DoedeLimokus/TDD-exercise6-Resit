@@ -1,5 +1,5 @@
 import { describe, it, expect} from "vitest"
-import { createField, getSizeFromRLE, getLivingCellsFromRLE, placeCellsOnField, checkEachCell} from "./gameOfLife.mjs"
+import { createField, getSizeFromRLE, getLivingCellsFromRLE, placeCellsOnField, checkEachCell, giveLivingCells} from "./gameOfLife.mjs"
 
 // empty field check
 describe('empty field check', () => {
@@ -50,7 +50,7 @@ describe("Place cells on field", () => {
     })
 })
 
-describe("Checking what the state of each cell is: [coord-x, coord-y, amount of neighbours - living or nog (1=living)]", () => {
+describe("Checking what the state of each cell is: [coord-x, coord-y, amount of neighbours, living or not (1=living)]", () => {
     it("Find how many living neighbours on 3x3 field", () => {
         expect(checkEachCell([['b','o','b'],['b','b','o'],['o','o','o']])).toEqual([[0,0,1,0], [1,0,1,1], [2,0,2,0], [0,1,3,0], [1,1,5,0], [2,1,3,1], [0,2,1,1], [1,2,3,1], [2,2,2,1]])
     })
@@ -59,5 +59,11 @@ describe("Checking what the state of each cell is: [coord-x, coord-y, amount of 
     })
     it("Find how many living neighbours on 3x4 field", () => {
         expect(checkEachCell([['b','o','o','b'],['b','b','o','o'],['b','o','b','o']])).toEqual([[0,0,1,0], [1,0,2,1], [2,0,3,1], [3,0,3,0], [0,1,2,0], [1,1,4,0], [2,1,5,1], [3,1,3,1], [0,2,1,0], [1,2,1,1], [2,2,4,0], [3,2,2,1]])
+    })
+})
+
+describe("Determine wich cells should be living", () => {
+    it("Return a list of coords of living cells 1", () => {
+        expect(giveLivingCells([[0,0,1,0], [1,0,1,1], [2,0,2,0], [0,1,3,0], [1,1,5,0], [2,1,3,1], [0,2,1,1], [1,2,3,1], [2,2,2,1]])).toEqual([[0,1],[2,1],[1,2],[2,2]])
     })
 })
