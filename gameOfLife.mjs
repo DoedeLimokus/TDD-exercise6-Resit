@@ -163,23 +163,19 @@ export function formRLE(field){
 
 export function playGame(RLE, turns){
     const parsedRLE = formatRLE(RLE)
-    const size = getSizeFromRLE(parsedRLE[0])
-    const livingCellsRLE = getLivingCellsFromRLE(parsedRLE[1])
-    let field = createField(size[0][1], size[1][1])
-    // console.log(livingCellsRLE)
-    // console.log(field)
-    // console.log('We gaan een veld maken')
-    let state = placeCellsOnField(field, livingCellsRLE)
+    let state = getLivingCellsFromRLE(parsedRLE[1])
 
     for(let turn = 0; turn < turns; turn++){
-        let cellData = checkEachCell(state)
-        let livingCells = giveLivingCells(cellData)
-        let newField = createField(size[0][1], size[1][1])
+        state = getNewLivingCells(state)
         console.log(`dit is turn ${turn}`)
-        state = placeCellsOnField(newField, livingCells)
     }
 
-    return(formRLE(state))
+    const MinMax = getDifMinMax(state)
+    console.log(MinMax)
+    const emptyField = createField(MinMax[0],MinMax[1])
+    const endField = placeCellsOnField(emptyField, state)
+
+    return(formRLE(endField))
 }
 
 export function getNewLivingCells(livingCells){
@@ -225,4 +221,6 @@ export function getDifMinMax(livingCells){
     return([(maxX - minX), (maxY - minY)])
 }
 
-console.log(getDifMinMax([[3,1], [2,1], [-2,1], [1,2], [2,5]]))
+console.log(playGame(`#C This is a glider.
+x = 3, y = 3
+bob$2bo$3o!`, 3))
