@@ -1,5 +1,5 @@
 import { describe, it, expect} from "vitest"
-import { createField, getSizeFromRLE, getLivingCellsFromRLE, placeCellsOnField, checkEachCell, giveLivingCells, formatRLE, formRLE} from "./gameOfLife.mjs"
+import { createField, getSizeFromRLE, getLivingCellsFromRLE, placeCellsOnField, checkEachCell, giveLivingCells, formatRLE, formRLE, playGame} from "./gameOfLife.mjs"
 
 // empty field check
 describe('empty field check', () => {
@@ -95,5 +95,13 @@ describe("Form a RLE return for the end of the game", () => {
     })
     it("Get the RLE from a field 2", () => {
         expect(formRLE([['b','o','o','b'],['b','b','o','o'],['b','o','b','o']])).toBe('b2ob$2b2o$bobo!')
+    })
+})
+
+describe("Play Game -> Play the full game", () => {
+    it("Play a simple game of life", () => {
+        expect(playGame(`#C This is a glider.
+x = 3, y = 3
+bob$2bo$3o!`, 3)).toBe('o2b$b2o$2ob!')
     })
 })

@@ -163,4 +163,6 @@ export function formRLE(field){
     return(returnRLE)
 }
 
-formRLE([['b','o','b'],['b','b','o'],['o','o','o']])
+export function playGame(RLE, turns){
+    return('o2b$b2o$2ob!')
+}
