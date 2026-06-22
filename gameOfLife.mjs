@@ -118,3 +118,26 @@ export function giveLivingCells(data){
     }
     return livingCellsNextRound
 }
+
+export function formatRLE(RLE){
+    const lines = RLE.split(/\r?\n/)
+    let returnData = []
+
+    for (let pointer = 0; pointer < lines.length; pointer++){
+        const line = lines[pointer]
+        if (line[0] == '#'){
+            continue
+        } else if (line[0] == 'x'){
+            returnData.push(line.slice(0, 13))
+        } else if (line[0] == 'b' || line[0] == 'o' || !(isNaN(line[0]))){
+            returnData.push(line)
+        }
+    }
+
+    console.log(returnData)
+    return (returnData)
+}
+
+formatRLE(`#C This is a glider.
+x = 3, y = 3
+bo$2bo$3o!`)

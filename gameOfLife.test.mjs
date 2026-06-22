@@ -1,5 +1,5 @@
 import { describe, it, expect} from "vitest"
-import { createField, getSizeFromRLE, getLivingCellsFromRLE, placeCellsOnField, checkEachCell, giveLivingCells} from "./gameOfLife.mjs"
+import { createField, getSizeFromRLE, getLivingCellsFromRLE, placeCellsOnField, checkEachCell, giveLivingCells, formatRLE} from "./gameOfLife.mjs"
 
 // empty field check
 describe('empty field check', () => {
@@ -72,4 +72,19 @@ describe("Determine wich cells should be living", () => {
     it("Return a list of coords of living cells 3", () => {
         expect(giveLivingCells([[0,0,1,0], [1,0,2,1], [2,0,3,1], [3,0,3,0], [0,1,2,0], [1,1,4,0], [2,1,5,1], [3,1,3,1], [0,2,1,0], [1,2,1,1], [2,2,4,0], [3,2,2,1]])).toEqual([[1,0], [2,0], [3,0], [3,1], [3,2]])
     })
+})
+
+describe("Get the necessary data from the RLE input", () => {
+    it("Get the necessary data from a simpel RLE input", () => {
+    expect(formatRLE(`#C This is a glider.
+x = 3, y = 3
+bo$2bo$3o!`)).toEqual(['x = 3, y = 3', 'bo$2bo$3o!'])
+                    })
+    it("Get the necessary data from a advanced RLE input", () => {
+    expect(formatRLE(`#N Gosper glider gun
+#C This was the first gun discovered.
+#C As its name suggests, it was discovered by Bill Gosper.
+x = 36, y = 9, rule = B3/S23
+24bo$22bobo$12b2o6b2o12b2o$11bo3bo4b2o12b2o$2o8bo5bo3b2o$2o8bo3bob2o4bobo$10bo5bo7bo$11bo3bo$12b2o!`)).toEqual(['x = 36, y = 9', '24bo$22bobo$12b2o6b2o12b2o$11bo3bo4b2o12b2o$2o8bo5bo3b2o$2o8bo3bob2o4bobo$10bo5bo7bo$11bo3bo$12b2o!'])
+                    })
 })
