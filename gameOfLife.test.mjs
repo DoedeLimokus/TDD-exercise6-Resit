@@ -1,5 +1,5 @@
 import { describe, it, expect} from "vitest"
-import { createField, getSizeFromRLE, getLivingCellsFromRLE, placeCellsOnField, checkEachCell, giveLivingCells, formatRLE, formRLE, playGame, getNewLivingCells, getDifMinMax} from "./gameOfLife.mjs"
+import { createField, getSizeFromRLE, getLivingCellsFromRLE, placeCellsOnField, checkEachCell, giveLivingCells, formatRLE, formRLE, playGame, getNewLivingCells, getDifMinMax, normalizeCells} from "./gameOfLife.mjs"
 
 // empty field check
 describe('empty field check', () => {
@@ -141,5 +141,11 @@ describe("Get the min max difference for determining the field size", () => {
     })
     it("max and min test 2", () => {
         expect(getDifMinMax([[3,1], [2,1], [-2,1], [1,2], [2,7]])).toEqual([5,6])
+    })
+})
+
+describe("Normalize the coords to remove the dead lines in the output", () => {
+    it("Normalize test 1", () => {
+        expect(normalizeCells([[1,1],[2,2],[3,2],[1,3],[2,3]])).toEqual([[0,0], [1,1], [2,1], [0,2], [1,2]])
     })
 })
