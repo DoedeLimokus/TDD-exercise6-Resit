@@ -40,7 +40,6 @@ export function getLivingCellsFromRLE(RLE){
             livingCells.push([x,y])
             x += 1
         } else if (currentLetter == "$"){
-            console.log(`$, ${pointer}`)
             x = 0
             y += 1
         } else if (!isNaN(RLE[pointer])){
@@ -134,7 +133,6 @@ export function formatRLE(RLE){
         }
     }
 
-    console.log(returnData)
     return (returnData)
 }
 
@@ -164,5 +162,27 @@ export function formRLE(field){
 }
 
 export function playGame(RLE, turns){
-    return('o2b$b2o$2ob!')
+    const parsedRLE = formatRLE(RLE)
+    const size = getSizeFromRLE(parsedRLE[0])
+    const livingCellsRLE = getLivingCellsFromRLE(parsedRLE[1])
+    let field = createField(size[0][1], size[1][1])
+    // console.log(livingCellsRLE)
+    // console.log(field)
+    // console.log('We gaan een veld maken')
+    let state = placeCellsOnField(field, livingCellsRLE)
+
+    for(let turn = 0; turn < turns; turn++){
+        let cellData = checkEachCell(state)
+        let livingCells = giveLivingCells(cellData)
+        let newField = createField(size[0][1], size[1][1])
+        console.log(`dit is turn ${turn}`)
+        state = placeCellsOnField(newField, livingCells)
+    }
+
+    console.log(formRLE(state))
+    return(formRLE(state))
 }
+
+playGame(`#C This is a glider.
+x = 3, y = 3
+bob$2bo$3o!`, 3)
